@@ -27,13 +27,14 @@
     "vscode": "^1.75.0"
   },
   "activationEvents": [
+    "onCommand:crackeddev.getToken",
     "onStartupFinished"
   ],
   "contributes": {
     "commands": [
       {
-        "command": "cracked.dev.getToken",
-        "title": "cracked.dev: Enter token"
+        "command": "crackeddev.getToken",
+        "title": "crackeddev: Enter token"
       },
       {
         "command": "codetime.toDashboard",

@@ -7,14 +7,14 @@ let codetime: CodeTime;
 
 export function activate(context: vscode.ExtensionContext) {
   codetime = new CodeTime(context.globalState);
-  vscode.commands.registerCommand('cracked.dev.getToken', () => {
+  vscode.commands.registerCommand('crackeddev.getToken', () => {
     codetime.setToken();
   });
   vscode.commands.registerCommand('codetime.codeTimeInStatusBar', () => {
     codetime.codeTimeInStatBar();
   });
   vscode.commands.registerCommand('codetime.toDashboard', () => {
-    const url = `http://localhost:3000/api/leaderboard`;
+    const url = `https://3000-ymohit1603-crackeddev-hj0httjeb5b.ws-us118.gitpod.io/api/leaderboard`;
     vscode.env.openExternal(vscode.Uri.parse(url));
   });
 }

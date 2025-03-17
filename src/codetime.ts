@@ -23,26 +23,30 @@ export class CodeTime {
   }
 
   setToken() {
+    console.log("setting token");
     vscode.window
       .showInputBox({
         password: true,
         placeHolder: 'CodeTime: Input Your Token (from: codetime.dev)',
       })
       .then((token) => {
-        if (token && this.isToken(token)) {
+        console.log("token",token);
+        if (token && token.trim()) {
+          token = token.trim();
+          console.log('Token received:', token);
           this.state.update('token', token);
           this.token = token;
           this.getCurrentDuration(true);
-        }
-        else {
-          vscode.window.showErrorMessage('CodeTime: Token validation failed');
-          this.statusBar.text = '$(clock) CodeTime: Cannot Get Token';
-          this.statusBar.tooltip = 'Enter Token';
+        } else {
+          vscode.window.showErrorMessage('CodeTime: Invalid or empty token. Please enter a valid token from codetime.dev.');
+          this.statusBar.text = '$(clock) CodeTime: No Token Set';
+          this.statusBar.tooltip = 'Click to Enter Token';
           this.statusBar.command = 'codetime.getToken';
           this.token = '';
         }
       });
-  }
+}
+
 
   private statusBar: vscode.StatusBarItem = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Left,
@@ -82,11 +86,9 @@ export class CodeTime {
     return 2;
   }
 
-  isToken(token: string) {
-    return /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
-      token,
-    );
-  }
+  // 
+  
+
 
   initSetToken() {
     const stateToken = this.state.get<string>('token');
