@@ -1,5 +1,5 @@
 import * as os from 'node:os';
-import process from 'node:process';
+import * as process from "process";
 import { got } from 'got';
 import type { Got } from 'got';
 
@@ -64,10 +64,11 @@ export class CodeTime {
     this.userId = this.getUserId();
     this.initSetToken();
     this.client = got.extend({
-      prefixUrl: vscode.workspace.getConfiguration('codetime').serverEntrypoint,
+      prefixUrl: "http://localhost:3000/api/leaderboard",
       responseType: 'json',
       headers: {
         'User-Agent': 'CodeTime Client',
+        'token': this.token,
       },
       hooks: {
         beforeRequest: [
@@ -226,7 +227,7 @@ export class CodeTime {
           };
           this.out.appendLine(JSON.stringify(data));
           // Post data
-          this.client.post(`eventLog`, { json: data }).catch((e: { response: { statusCode: number } }) => {
+          this.client.post('', { json: data }).catch((e: { response: { statusCode: number } }) => {
             this.out.appendLine(`Error: ${e}`);
             // TODO: Append Data To Local
           });
