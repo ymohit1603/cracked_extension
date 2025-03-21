@@ -27,7 +27,7 @@ export class CodeTime {
     vscode.window
       .showInputBox({
         password: true,
-        placeHolder: 'CodeTime: Input Your Token (from: codetime.dev)',
+        placeHolder: 'CrackedDev: Input Your Token',
       })
       .then((token) => {
         console.log("token", token);
@@ -38,10 +38,10 @@ export class CodeTime {
           this.token = token;
           this.getCurrentDuration(true);
         } else {
-          vscode.window.showErrorMessage('CodeTime: Invalid or empty token. Please enter a valid token from codetime.dev.');
-          this.statusBar.text = '$(clock) CodeTime: No Token Set';
+          vscode.window.showErrorMessage('CrackedDev: Invalid or empty token.');
+          this.statusBar.text = '$(clock) CrackedDev: No Token Set';
           this.statusBar.tooltip = 'Click to Enter Token';
-          this.statusBar.command = 'codetime.getToken';
+          this.statusBar.command = 'CrackedDev.getToken';
           this.token = '';
         }
       });
@@ -98,7 +98,7 @@ export class CodeTime {
   }
 
   private init(): void {
-    this.statusBar.text = '$(clock) CodeTime: Initializing...';
+    this.statusBar.text = '$(clock) CracedDev: Initializing...';
     this.statusBar.show();
     this.setupEventListeners();
     this.getCurrentDuration();

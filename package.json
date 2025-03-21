@@ -1,31 +1,18 @@
 {
-  "publisher": "Jannchie",
-  "name": "codetime",
-  "displayName": "CodeTime",
-  "version": "0.8.0",
-  "description": "Codetime vscode plugin. Statistical analysis of code time.",
-  "homepage": "https://github.com/Data-Trekkers/codetime-vscode#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Data-Trekkers/codetime-vscode"
-  },
-  "keywords": [
-    "code time",
-    "code",
-    "time",
-    "data",
-    "wakatime",
-    "codetime",
-    "worktime"
-  ],
+  "publisher": "MohitDev",
+  "name": "CrackedDev",
+  "displayName": "CrackedDev",
+  "version": "0.8.3",
+  "description": "CrackedDev vscode plugin",
   "categories": [
     "Other"
   ],
   "main": "./dist/extension.js",
   "icon": "images/logo.png",
   "engines": {
-    "vscode": "^1.75.0"
-  },
+  "vscode": "^1.98.0"
+}
+,
   "activationEvents": [
     "onCommand:crackeddev.getToken",
     "onStartupFinished"
@@ -34,42 +21,9 @@
     "commands": [
       {
         "command": "crackeddev.getToken",
-        "title": "crackeddev: Enter token"
-      },
-      // {
-      //   "command": "codetime.toDashboard",
-      //   "title": "cracked.dev: Browse dashboard"
-      // },
-      // {
-      //   "command": "codetime.codeTimeInStatusBar",
-      //   "title": "CodeTime: Select status bar info"
-      // }
-    ],
-    "configuration": {
-      "title": "CodeTime",
-      "properties": {
-        "codetime.statusBarInfo": {
-          "type": "string",
-          "default": "total",
-          "enum": [
-            "total",
-            "today",
-            "24h"
-          ],
-          "enumDescriptions": [
-            "Show total code time",
-            "Show today code time",
-            "Show 24h code time"
-          ],
-          "description": "Select the information showing in the status bar."
-        },
-        "codetime.serverEntrypoint": {
-          "type": "string",
-          "default": "https://api.codetime.dev",
-          "description": "Server entrypoint defines the URL for reporting data to a server."
-        }
+        "title": "CrackedDev: Enter token"
       }
-    }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
