@@ -10,13 +10,13 @@ export function activate(context: vscode.ExtensionContext) {
   vscode.commands.registerCommand('crackeddev.getToken', () => {
     codetime.setToken();
   });
-  vscode.commands.registerCommand('codetime.codeTimeInStatusBar', () => {
-    codetime.codeTimeInStatBar();
-  });
-  vscode.commands.registerCommand('codetime.toDashboard', () => {
-    const url = `https://3000-ymohit1603-crackeddev-hj0httjeb5b.ws-us118.gitpod.io/api/leaderboard`;
-    vscode.env.openExternal(vscode.Uri.parse(url));
-  });
+  // vscode.commands.registerCommand('codetime.codeTimeInStatusBar', () => {
+  //   codetime.codeTimeInStatBar();
+  // });
+  // vscode.commands.registerCommand('codetime.toDashboard', () => {
+  //   const url = `https://3000-ymohit1603-crackeddev-hj0httjeb5b.ws-us118.gitpod.io/api/leaderboard`;
+  //   vscode.env.openExternal(vscode.Uri.parse(url));
+  // });
 }
 
 export function deactivate() {

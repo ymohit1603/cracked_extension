@@ -36,14 +36,14 @@
         "command": "crackeddev.getToken",
         "title": "crackeddev: Enter token"
       },
-      {
-        "command": "codetime.toDashboard",
-        "title": "cracked.dev: Browse dashboard"
-      },
-      {
-        "command": "codetime.codeTimeInStatusBar",
-        "title": "CodeTime: Select status bar info"
-      }
+      // {
+      //   "command": "codetime.toDashboard",
+      //   "title": "cracked.dev: Browse dashboard"
+      // },
+      // {
+      //   "command": "codetime.codeTimeInStatusBar",
+      //   "title": "CodeTime: Select status bar info"
+      // }
     ],
     "configuration": {
       "title": "CodeTime",
