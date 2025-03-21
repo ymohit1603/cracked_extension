@@ -30,7 +30,7 @@ export class CodeTime {
         placeHolder: 'CodeTime: Input Your Token (from: codetime.dev)',
       })
       .then((token) => {
-        console.log("token",token);
+        console.log("token", token);
         if (token && token.trim()) {
           token = token.trim();
           console.log('Token received:', token);
@@ -45,7 +45,7 @@ export class CodeTime {
           this.token = '';
         }
       });
-}
+  }
 
 
   private statusBar: vscode.StatusBarItem = vscode.window.createStatusBarItem(
@@ -73,8 +73,7 @@ export class CodeTime {
       hooks: {
         beforeRequest: [
           (options: any) => {
-            if (options.headers)
-              {options.headers.token = this.token;}
+            if (options.headers) { options.headers.token = this.token; }
           },
         ],
       },
@@ -88,15 +87,14 @@ export class CodeTime {
   }
 
   // 
-  
+
 
 
   initSetToken() {
     const stateToken = this.state.get<string>('token');
     const envToken = process.env.CODETIME_TOKEN;
     this.token = envToken || (stateToken || '');
-    if (this.token === '')
-      {this.setToken();}
+    if (this.token === '') { this.setToken(); }
   }
 
   private init(): void {
@@ -122,8 +120,7 @@ export class CodeTime {
     vscode.workspace.onDidSaveTextDocument(this.onSave, this, events);
     vscode.workspace.onDidCreateFiles(this.onCreate, this, events);
     vscode.workspace.onDidChangeConfiguration((e) => {
-      if (e.affectsConfiguration('codetime'))
-        {this.getCurrentDuration();}
+      if (e.affectsConfiguration('codetime')) { this.getCurrentDuration(); }
     });
     this.disposable = vscode.Disposable.from(...events);
   }
@@ -131,8 +128,7 @@ export class CodeTime {
   private onEdit(e: vscode.TextDocumentChangeEvent) {
     let eventName = events.FILE_EDITED;
     // 如果 document 是 output channel 的话，不记录
-    if (e.document.uri.scheme === 'output')
-      {return;}
+    if (e.document.uri.scheme === 'output') { return; }
 
     if (e.contentChanges.length === 1
       && /\r\n|\n|\r/.test(e.contentChanges[0].text)) {
@@ -149,16 +145,13 @@ export class CodeTime {
   }
 
   private onChangeTextEditorSelection(e: vscode.TextEditorSelectionChangeEvent) {
-    if (e.textEditor.document.uri.scheme === 'output')
-      {return;}
+    if (e.textEditor.document.uri.scheme === 'output') { return; }
 
-    if (Math.random() > 0.9)
-      {this.onChange(events.CHANGE_EDITOR_SELECTION);}
+    if (Math.random() > 0.9) { this.onChange(events.CHANGE_EDITOR_SELECTION); }
   }
 
   private onChangeTextEditorVisibleRanges = this.debounce((_e: vscode.TextEditorVisibleRangesChangeEvent) => {
-    if (_e.textEditor.document.uri.scheme === 'output')
-      {return;}
+    if (_e.textEditor.document.uri.scheme === 'output') { return; }
 
     this.onChange(events.CHANGE_EDITOR_VISIBLE_RANGES);
   }, 300); // 300毫秒的节流时间
@@ -203,8 +196,7 @@ export class CodeTime {
         let relativeFilePath: string = vscode.workspace.asRelativePath(
           absoluteFilePath,
         );
-        if (relativeFilePath === absoluteFilePath)
-          {relativeFilePath = '[other workspace]';}
+        if (relativeFilePath === absoluteFilePath) { relativeFilePath = '[other workspace]'; }
 
         if (relativeFilePath) {
           const time: number = Date.now();
@@ -256,7 +248,7 @@ export class CodeTime {
         minutes += hours * 60;
         break;
       }
-      case 'total' : {
+      case 'total': {
         minutes = 60 * 24 * 365 * 100;
         break;
       }
@@ -272,8 +264,7 @@ export class CodeTime {
     this.client.get<{ minutes: number }>(`user/minutes?minutes=${minutes}`).then((res: { body: { minutes: any } }) => {
       const { minutes } = res.body;
       this.statusBar.text = `$(watch) ${getDurationText(minutes * 60 * 1000)}`;
-      if (showSuccess)
-        {vscode.window.showInformationMessage('CodeTime: Token validation succeeded');}
+      if (showSuccess) { vscode.window.showInformationMessage('CodeTime: Token validation succeeded'); }
     });
   }
 
